@@ -78,22 +78,26 @@ for a in $file
 　		touch home/ryuhei/new_reserch/reserch/seed_data/feature${cff}.txt
 　		#親ブランチのAutherの総コミット数の差
 		auther_name1=`git log ${id[$check]} --pretty=format:"%cn" --no-merges -n 1`
-		auther_name2=`git log ${id[$check-1]} --pretty=format:"%cn" --no-merges -n 1`
+		auther_name2=`git log ${id[$check+1]} --pretty=format:"%cn" --no-merges -n 1`
 		sum_commit1=`git log --no-merges --auther="$auther_name1" --oneline | wc -l`
 		sum_commit2=`git log --no-merges --auther="$auther_name2" --oneline | wc -l`
-		f_sum_commit=`expr $sum_commit1 - $sum_commit2``
+		f_sum_commit=`expr $sum_commit1 - $sum_commit2`
 		echo "$f_sum_commit " > home/ryuehi/new_reserch/reserch/seed_data/feature${ccf}.txt
 　		
 		#親ブランチのAutherの総コミット行数の差
 		commit_line1=`git log --numstat --pretty="%H" --author="$auther_name1"  --no-merges | awk 'NF==3 {plus+=$1; minus+=$2} END {printf("%d\n", plus+minus)}'`
 		commit_line2=`git log --numstat --pretty="%H" --author="$auther_name2"  --no-merges | awk 'NF==3 {plus+=$1; minus+=$2} END {printf("%d\n", plus+minus)}'`
-		f_commit_line=`expr $commit_line1-$commit_line2`
+		f_commit_line=`expr $commit_line1 - $commit_line2`
+        echo "$f_commit_line " > home/ryuehi/new_reserch/reserch/seed_data/feature${ccf}.txt
+　		
+		#親ブランチのコミットメッセージの長さの差
+		commit_message1=`git log ${id[$check]} --pretty=format:"%s" -n 1 --no-merges | wc -m`		
+		commit_message2=`git log ${id[$check+1]} --pretty=format:"%s" -n 1 --no-merges | wc -m`		
+		f_commit_message=`expr $commit_message1 - $commit_message2`
+		echo "$f_commit_message " > home/ryuehi/new_reserch/reserch/seed_data/feature${ccf}.txt
 
-　		#親ブランチのコミットメッセージの長さの差
-
-
-		 #親ブランチの最終コミットの時刻の差
-
+		#親ブランチの最終コミットの時刻の差
+		
 
 		fix_count=$((fix_count+1))
         cff=$((cff+1))
