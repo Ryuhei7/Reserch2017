@@ -1,0 +1,22 @@
+language: python
+python:
+  - "2.6"
+  - "2.7"
+<<<<<<< HEAD
+#  - "3.3"
+script: nosetests test --nocapture
+notifications:
+  email:
+    - filippo.valsorda@gmail.com
+  irc:
+    channels:
+      - "irc.freenode.org#youtube-dl"
+    skip_join: true
+=======
+notifications:
+  irc: "irc.freenode.org#youtube-dl"
+#command to install the setup
+install:
+# command to run tests
+script: nosetests test --verbose
+>>>>>>> 4fb1acc212555e3e817f858dce964876eef75d85

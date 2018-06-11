@@ -3,7 +3,7 @@
 #urlの数値を変更させる
 #既存のリポジトリ番号に続けてやる
 
-url=`cat ~/new_reserch/api_result/50-60.json  | jq .items[].clone_url | sed -e "s/\"//g"` 
+url=`cat ~/new_reserch/api_result/10-20.json  | jq .items[].clone_url | sed -e "s/\"//g"` 
 
 count=0
 for a in $url
